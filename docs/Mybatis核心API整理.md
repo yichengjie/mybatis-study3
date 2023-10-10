@@ -9,6 +9,7 @@
 3. Executor
     ```text
     CachingExecutor
+    BaseExecutor,SimpleExecutor,BatchExecutor, ...
     ```
 4. StatementHandler
     ```text
