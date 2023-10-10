@@ -1,12 +1,16 @@
-1. SqlSession
+1. SqlSessionFactory
+   ```text
+   DefaultSqlSessionFactory
+   ```
+2. SqlSession
     ```text
     DefaultSqlSession, SqlSessionTemplate
     ```
-2. Executor
+3. Executor
     ```text
     CachingExecutor
     ```
-3. StatementHandler
+4. StatementHandler
     ```text
     RoutingStatementHandler, PreparedStatementHandler, SimpleStatementHandler, CallableStatementHandler
     ```

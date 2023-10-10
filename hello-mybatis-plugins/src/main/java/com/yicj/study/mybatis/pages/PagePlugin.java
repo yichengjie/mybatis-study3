@@ -36,23 +36,22 @@ import org.slf4j.LoggerFactory;
 @Intercepts({ @Signature(type = StatementHandler.class, method = "prepare", args = { Connection.class,Integer.class }) })
 public class PagePlugin implements Interceptor {
 	private static final Logger log = LoggerFactory.getLogger(PagePlugin.class);
-    private static String dialect = "";
-    private static String pageSqlId = "";
+    private String dialect = "mysql";
+    private String pageSqlId ;
 
     @Override
     @SuppressWarnings("unchecked")
     public Object intercept(Invocation ivk) throws Throwable {
-
         if (ivk.getTarget() instanceof RoutingStatementHandler) {
             RoutingStatementHandler statementHandler = (RoutingStatementHandler) ivk
                     .getTarget();
-            BaseStatementHandler delegate = (BaseStatementHandler) ReflectHelper
+            BaseStatementHandler baseStatementHandler = (BaseStatementHandler) ReflectHelper
                     .getValueByFieldName(statementHandler, "delegate");
             MappedStatement mappedStatement = (MappedStatement) ReflectHelper
-                    .getValueByFieldName(delegate, "mappedStatement");
+                    .getValueByFieldName(baseStatementHandler, "mappedStatement");
 
             if (mappedStatement.getId().matches(pageSqlId)) {
-                BoundSql boundSql = delegate.getBoundSql();
+                BoundSql boundSql = baseStatementHandler.getBoundSql();
                 Object parameterObject = boundSql.getParameterObject();
                 if (parameterObject == null) {
                     throw new NullPointerException("parameterObject error");
