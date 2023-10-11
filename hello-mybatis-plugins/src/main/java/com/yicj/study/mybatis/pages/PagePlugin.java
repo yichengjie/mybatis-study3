@@ -55,7 +55,7 @@ public class PagePlugin implements Interceptor {
             if (mappedStatement.getId().matches(regexSqlId)) {
                 BoundSql boundSql = baseStatementHandler.getBoundSql();
                 Object parameterObject = boundSql.getParameterObject();
-                if (parameterObject == null) {
+                   if (parameterObject == null) {
                     throw new NullPointerException("parameterObject error");
                 } else {
                 	StringBuffer buf=new StringBuffer();
