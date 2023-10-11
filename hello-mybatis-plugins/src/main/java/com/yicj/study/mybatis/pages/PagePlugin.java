@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.Properties;
 
 import com.yicj.study.mybatis.exception.AppException;
+import lombok.Setter;
 import org.apache.ibatis.executor.ErrorContext;
 import org.apache.ibatis.executor.ExecutorException;
 import org.apache.ibatis.executor.statement.BaseStatementHandler;
@@ -33,11 +34,12 @@ import org.apache.ibatis.type.TypeHandlerRegistry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@Intercepts({ @Signature(type = StatementHandler.class, method = "prepare", args = { Connection.class,Integer.class }) })
+@Setter
+@Intercepts({@Signature(type = StatementHandler.class, method = "prepare", args = { Connection.class,Integer.class }) })
 public class PagePlugin implements Interceptor {
 	private static final Logger log = LoggerFactory.getLogger(PagePlugin.class);
     private String dialect = "mysql";
-    private String pageSqlId ;
+    private String regexSqlId = "";
 
     @Override
     @SuppressWarnings("unchecked")
@@ -50,7 +52,7 @@ public class PagePlugin implements Interceptor {
             MappedStatement mappedStatement = (MappedStatement) ReflectHelper
                     .getValueByFieldName(baseStatementHandler, "mappedStatement");
 
-            if (mappedStatement.getId().matches(pageSqlId)) {
+            if (mappedStatement.getId().matches(regexSqlId)) {
                 BoundSql boundSql = baseStatementHandler.getBoundSql();
                 Object parameterObject = boundSql.getParameterObject();
                 if (parameterObject == null) {
@@ -69,18 +71,7 @@ public class PagePlugin implements Interceptor {
                     BoundSql countBS = new BoundSql(
                             mappedStatement.getConfiguration(), countSql,
                             boundSql.getParameterMappings(), parameterObject);
-//                    Field additionalParamsField = ReflectUtil.getFieldByFieldName(boundSql, "additionalParameters");
-//                    if (additionalParamsField != null) {
-//                        Map additionalParameters = (Map) ReflectUtil.getValueByFieldName(boundSql, "additionalParameters");
-//                        ReflectUtil.setValueByFieldName(countBS, "additionalParameters", additionalParameters);
-//                    }
-//                    Field metaParamsField = ReflectUtil.getFieldByFieldName(boundSql, "metaParameters");
-//                    if (metaParamsField != null) {
-//                        MetaObject mo = (MetaObject) ReflectUtil.getValueByFieldName(boundSql, "metaParameters");
-//                        ReflectUtil.setValueByFieldName(countBS, "metaParameters", mo);
-//                    }
-                    setParameters(countStmt, mappedStatement, countBS,
-                            parameterObject);
+                    setParameters(countStmt, mappedStatement, countBS, parameterObject);
                     ResultSet rs = countStmt.executeQuery();
                     int count = 0;
                     if (rs.next()) {
@@ -88,7 +79,6 @@ public class PagePlugin implements Interceptor {
                     }
                     rs.close();
                     countStmt.close();
-
                     PageInfo page = null;
                     if (parameterObject instanceof PageInfo) {
                         page = (PageInfo) parameterObject;
@@ -196,19 +186,6 @@ public class PagePlugin implements Interceptor {
                 pageSql.append(") where row_id>");
                 pageSql.append(page.getCurrentResult());
             }else if ("postgresql".equals(dialect)) {
-/*                pageSql.append(" SELECT T.* FROM(  ");
-                pageSql.append(" SELECT row_number() OVER (ORDER BY ").append(page.getSortField())
-                .append(" ").append(page.getOrder());
-                pageSql.append(" ) as rownumber,so.*  from (");
-                pageSql.append(sql.replaceAll(";", ""));
-                pageSql.append(") AS so ");
-                pageSql.append(" ) AS T  ");
-                pageSql.append(" WHERE	 T.rownumber <=").append(page.getCurrentResult() + page.getShowCount());
-                pageSql.append("  AND T.rownumber >=").append(page.getCurrentResult()+1);*/
-
-                /**
-                 * 调整pgsql分页查询，提高查询效率
-                 */
                 pageSql.append(sql);
                 pageSql.append(" limit " +page.getShowCount()  + " offset "
                         + page.getCurrentResult());
@@ -234,7 +211,7 @@ public class PagePlugin implements Interceptor {
                 e.printStackTrace();
             }
         }
-        pageSqlId = p.getProperty("pageSqlId");
+        regexSqlId = p.getProperty("pageSqlId");
         if (dialect ==null || dialect.equals("")) {
             try {
                 throw new AppException("pageSqlId property is not found!");

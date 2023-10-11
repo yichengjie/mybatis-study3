@@ -1,6 +1,7 @@
 package com.yicj.study.mybatis.repository.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.yicj.study.mybatis.pages.PageInfo;
 import com.yicj.study.mybatis.repository.entity.UserEntity;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -21,8 +22,11 @@ public interface UserMapper extends BaseMapper<UserEntity> {
     UserEntity findByUserId(Integer id) ;
 
     @Select("""
-            select * from t_user where 1=1 
+            select * from t_user where 1=1 and name = #{name}
             """)
-    List<UserEntity> list4Page(RowBounds rowBounds) ;
+    List<UserEntity> list4Page(
+            @Param("name") String name,
+            @Param("page") PageInfo pageInfo
+            /*RowBounds rowBounds*/) ;
 
 }

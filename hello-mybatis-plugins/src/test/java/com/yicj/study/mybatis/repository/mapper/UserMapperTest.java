@@ -3,6 +3,7 @@ package com.yicj.study.mybatis.repository.mapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.yicj.study.mybatis.HelloPluginsApplication;
 import com.yicj.study.mybatis.model.vo.PageRowBounds;
+import com.yicj.study.mybatis.pages.PageInfo;
 import com.yicj.study.mybatis.repository.entity.UserEntity;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.session.RowBounds;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
 
 @Slf4j
@@ -31,10 +33,14 @@ class UserMapperTest {
 
     @Test
     void list4Page2(){
-        RowBounds rowBounds = new PageRowBounds(0, 2) ;
-        List<UserEntity> list = userMapper.list4Page(rowBounds);
+        //RowBounds rowBounds = new PageRowBounds(0, 2) ;
+        PageInfo pageInfo = new PageInfo() ;
+        pageInfo.setCurrentPage(1);
+        pageInfo.setShowCount(2);
+        String name = "yicj1" ;
+        List<UserEntity> list = userMapper.list4Page(name, pageInfo);
         list.forEach(item -> log.info("item -> {}", item));
-        SqlSession sqlSession = null ;
-        sqlSession.getMapper(UserMapper.class) ;
+//        SqlSession sqlSession = null ;
+//        sqlSession.getMapper(UserMapper.class) ;
     }
 }
