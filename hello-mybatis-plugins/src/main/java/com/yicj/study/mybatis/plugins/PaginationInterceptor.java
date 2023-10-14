@@ -63,8 +63,7 @@ public class PaginationInterceptor implements Interceptor {
             for (String key : keySet) {
                 pageBoundSql.setAdditionalParameter(key, additionalParameters.get(key));
             }
-            List list = executor.query(ms, parameterObject, RowBounds.DEFAULT, (ResultHandler) args[3], pageKey, pageBoundSql);
-            return list;
+            return executor.query(ms, parameterObject, RowBounds.DEFAULT, (ResultHandler) args[3], pageKey, pageBoundSql);
         }
         //不需要分页，直接返回结果
         return invocation.proceed();

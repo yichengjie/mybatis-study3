@@ -29,4 +29,12 @@ public interface UserMapper extends BaseMapper<UserEntity> {
             @Param("page") PageInfo pageInfo
             /*RowBounds rowBounds*/) ;
 
+
+    @Select("""
+            select * from t_user where 1=1 and name = #{name}
+            """)
+    List<UserEntity> list4Page2(
+            @Param("name") String name,
+            RowBounds rowBounds) ;
+
 }

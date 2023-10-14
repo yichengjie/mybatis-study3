@@ -11,12 +11,12 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class AppConfig {
 
-    @Bean
-    public PagePlugin pagePlugin(){
-        PagePlugin pagePlugin = new PagePlugin();
-        pagePlugin.setRegexSqlId(".*.list4Page");
-        return  pagePlugin;
-    }
+//    @Bean
+//    public PagePlugin pagePlugin(){
+//        PagePlugin pagePlugin = new PagePlugin();
+//        pagePlugin.setRegexSqlId(".*.list4Page");
+//        return  pagePlugin;
+//    }
 
 
 }

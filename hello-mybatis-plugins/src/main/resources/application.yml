@@ -13,4 +13,4 @@ spring:
 logging:
   level:
     root: info
-    com.yicj.study.mybatis.repository.mapper: debug
+#    com.yicj.study.mybatis.repository.mapper: debug
