@@ -6,6 +6,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>hello-mybatis-plugins</module>
+        <module>hello-mybatis</module>
     </modules>
 
     <groupId>com.yicj.study</groupId>
