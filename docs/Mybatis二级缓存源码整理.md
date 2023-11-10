@@ -3,6 +3,9 @@
     mybatis-plus.configuration.cache-enabled=true
     ```
 2. 在mapper.xml文件中添加cache标签
+   ```xml
+   <cache size="10240" eviction="LRU"/>
+   ```
 3. 同一个事务中二级缓存不生效，会使用一级缓存，因为事务未提交。
 #### 执行流程部分
 1. Configuration创建Executor对象
