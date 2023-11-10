@@ -13,4 +13,10 @@ spring:
 logging:
   level:
     root: info
-#    com.yicj.study.mybatis.repository.mapper: debug
+    com.yicj.study.mybatis.repository.mapper: debug
+# 关闭一级缓存
+mybatis-plus:
+  configuration:
+    local-cache-scope: statement
+    cache-enabled: true
+

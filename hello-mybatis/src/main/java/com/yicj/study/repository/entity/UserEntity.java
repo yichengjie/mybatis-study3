@@ -2,6 +2,8 @@ package com.yicj.study.repository.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
 import lombok.experimental.Accessors;
+
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
@@ -10,7 +12,7 @@ import java.time.LocalDateTime;
  */
 @Accessors(chain = true)
 @TableName("t_user")
-public class UserEntity {
+public class UserEntity implements Serializable {
 
     @TableId(type = IdType.ASSIGN_ID)
     private Integer id ;
