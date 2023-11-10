@@ -26,11 +26,6 @@ public class UserService extends ServiceImpl<UserMapper, UserEntity>{
         LambdaQueryWrapper<UserEntity> wrapper = new LambdaQueryWrapper<>(entity) ;
         //2. 首次查询
         List<UserEntity> list = baseMapper.selectList(wrapper);
-        //3. 再次查询， 这一会一级缓存
-        list = baseMapper.selectList(wrapper);
-        list = baseMapper.selectList(wrapper);
-        list = baseMapper.selectList(wrapper);
-        list = baseMapper.selectList(wrapper);
         return list ;
     }
 

@@ -17,6 +17,6 @@ logging:
 # 关闭一级缓存
 mybatis-plus:
   configuration:
-    local-cache-scope: statement
+    local-cache-scope: session
     cache-enabled: true
 

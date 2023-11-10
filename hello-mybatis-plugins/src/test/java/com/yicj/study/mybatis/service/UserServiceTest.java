@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -22,9 +23,14 @@ public class UserServiceTest {
     private UserService userService ;
 
     @Test
+    @Transactional
     public void listUser(){
         UserEntity entity = new UserEntity() ;
         List<UserEntity> list = userService.listUser(entity);
+        //3. 再次查询， 这一会一级缓存
+        list = userService.listUser(entity);
+        list = userService.listUser(entity);
+        list = userService.listUser(entity);
         log.info("list size : {}", list.size());
         list.forEach(item -> log.info("item : {}", item));
     }
