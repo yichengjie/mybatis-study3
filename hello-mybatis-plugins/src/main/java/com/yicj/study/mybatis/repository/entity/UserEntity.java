@@ -1,9 +1,6 @@
 package com.yicj.study.mybatis.repository.entity;
 
-import com.baomidou.mybatisplus.annotation.FieldFill;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableLogic;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -19,6 +16,7 @@ import java.time.LocalDateTime;
 @TableName("t_user")
 public class UserEntity implements Serializable {
 
+    @TableId(type = IdType.ASSIGN_ID)
     private Integer id ;
 
     private String name ;
