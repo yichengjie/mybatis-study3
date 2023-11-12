@@ -15,7 +15,6 @@ import com.yicj.study.order.web.request.ListUserRequest;
 import com.yicj.study.order.web.request.SaveUserRequest;
 import com.yicj.study.order.web.response.ListUserResponse;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDateTime;
 
 /**
@@ -37,9 +36,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     @Override
     public Integer addEntity(SaveUserRequest request, IdentityDTO identity) {
         User entity = new User() ;
-        entity.setName(request.getName());
-        entity.setJob(request.getJob());
-        entity.setCompany(request.getCompany());
+        CommonUtils.copyObject(request, entity) ;
         entity.setCreateTime(LocalDateTime.now());
         entity.setCreateBy(identity.getUserCode());
         entity.setModifyTime(LocalDateTime.now());

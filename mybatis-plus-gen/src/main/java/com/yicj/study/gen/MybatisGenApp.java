@@ -49,6 +49,7 @@ public class MybatisGenApp {
                             .moduleName(moduleName) // 设置父包模块名
                             .mapper("repository.mapper")
                             .entity("repository.entity")
+                            .controller("web.controller")
                             .pathInfo(Collections.singletonMap(OutputFile.xml, rootPath + projectName + "\\src\\main\\resources\\mapper")); // 设置mapperXml生成路径
                 })
                 .strategyConfig(builder -> {
