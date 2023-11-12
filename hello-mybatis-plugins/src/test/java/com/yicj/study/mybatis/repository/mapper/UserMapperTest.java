@@ -11,12 +11,14 @@ import org.apache.ibatis.session.SqlSession;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.regex.Pattern;
 
 
 @Slf4j
+@Transactional
 @SpringBootTest(classes = HelloPluginsApplication.class)
 class UserMapperTest {
 
@@ -42,5 +44,14 @@ class UserMapperTest {
         list.forEach(item -> log.info("item -> {}", item));
 //        SqlSession sqlSession = null ;
 //        sqlSession.getMapper(UserMapper.class) ;
+    }
+
+    @Test
+    public void insert(){
+        UserEntity entity = new UserEntity() ;
+        entity.setName("yicj") ;
+        entity.setCompany("company test") ;
+        entity.setJob("job test") ;
+        userMapper.insert(entity) ;
     }
 }
