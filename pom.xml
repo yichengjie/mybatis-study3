@@ -7,6 +7,7 @@
     <modules>
         <module>hello-mybatis-plugins</module>
         <module>hello-mybatis</module>
+        <module>mybatis-plus-gen</module>
     </modules>
 
     <groupId>com.yicj.study</groupId>
@@ -22,6 +23,7 @@
         <spring-boot.version>2.6.11</spring-boot.version>
         <spring-cloud.version>2021.0.4</spring-cloud.version>
         <spring-alibaba.version>2021.0.4.0</spring-alibaba.version>
+        <mybatis-plus.version>3.5.3.2</mybatis-plus.version>
     </properties>
 
     <dependencyManagement>
@@ -83,19 +85,31 @@
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>
-                <version>3.5.3.2</version>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus</artifactId>
+                <version>${mybatis-plus.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-extension</artifactId>
-                <version>3.5.3.2</version>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-generator</artifactId>
+                <version>${mybatis-plus.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter-test</artifactId>
-                <version>3.5.3.2</version>
+                <version>${mybatis-plus.version}</version>
             </dependency>
 
             <dependency>
