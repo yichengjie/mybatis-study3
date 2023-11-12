@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 * @since 2023-11-12
 */
 @Data
-public class ListUserResponse {
+public class List${entity}Response {
 
     @ApiModelProperty("主键")
     private Integer id;
