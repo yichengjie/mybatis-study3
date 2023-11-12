@@ -17,9 +17,9 @@ public class BusinessGenApp {
         // 初始化
         CodeGenerator responseGen = new ListResponseCodeGenerator(rootPath, basePackage, moduleName) ;
         CodeGenerator pageReqGen = new PageRequestCodeGenerator(rootPath, basePackage, moduleName) ;
+        CodeGenerator saveGen = new SaveRequestCodeGenerator(rootPath, basePackage, moduleName);
         CodeGenerator serviceGen = new ServiceCodeGenerator(rootPath, basePackage, moduleName) ;
         CodeGenerator serviceImplGen = new ServiceImplCodeGenerator(rootPath, basePackage, moduleName);
-        CodeGenerator saveGen = new SaveRequestCodeGenerator(rootPath, basePackage, moduleName);
         // 执行
         responseGen.execute(entityName);
         pageReqGen.execute(entityName);
