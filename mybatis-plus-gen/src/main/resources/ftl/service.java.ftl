@@ -4,7 +4,7 @@ import com.yicj.study.common.model.dto.IdentityDTO;
 import com.yicj.study.common.model.vo.PageVO;
 import com.yicj.study.order.repository.entity.${entity};
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.yicj.study.order.web.request.List${entity}Request;
+import com.yicj.study.order.web.request.Page${entity}Request;
 import com.yicj.study.order.web.request.Save${entity}Request;
 import com.yicj.study.order.web.response.List${entity}Response;
 
