@@ -23,8 +23,9 @@ public class BusinessGenApp {
         // 执行
         responseGen.execute(entityName);
         pageReqGen.execute(entityName);
-        serviceGen.execute(entityName);
-        serviceImplGen.execute(entityName);
         saveGen.execute(entityName);
+        //serviceGen.execute(entityName);
+        //serviceImplGen.execute(entityName);
+
     }
 }

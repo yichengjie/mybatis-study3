@@ -2,6 +2,7 @@ package com.yicj.study.gen.service;
 
 import com.yicj.study.gen.utils.FreemarkerUtil;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,6 +31,11 @@ public abstract class AbstractCodeGenerator implements CodeGenerator{
         param.put("module", moduleName) ;
         //
         String fileName =  this.assembleFileName(entityName) ;
+        File file = new File(fileName) ;
+        File parentFile = file.getParentFile();
+        if (!parentFile.exists()){
+            parentFile.mkdirs();
+        }
         FreemarkerUtil.generator(fileName, param);
     }
 
