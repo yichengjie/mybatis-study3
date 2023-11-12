@@ -1,4 +1,4 @@
-package com.yicj.study.order.web.request;
+package com.yicj.study.${module}.web.request;
 
 import com.yicj.study.common.model.request.PageRequest;
 import lombok.Data;

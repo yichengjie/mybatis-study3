@@ -1,4 +1,4 @@
-package com.yicj.study.order.service.impl;
+package com.yicj.study.${module}.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -7,13 +7,13 @@ import com.yicj.study.common.enums.DeleteFlagEnums;
 import com.yicj.study.common.model.dto.IdentityDTO;
 import com.yicj.study.common.model.vo.PageVO;
 import com.yicj.study.common.utils.CommonUtils;
-import com.yicj.study.order.repository.entity.${entity};
-import com.yicj.study.order.repository.mapper.${entity}Mapper;
-import com.yicj.study.order.service.I${entity}Service;
+import com.yicj.study.${module}.repository.entity.${entity};
+import com.yicj.study.${module}.repository.mapper.${entity}Mapper;
+import com.yicj.study.${module}.service.I${entity}Service;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.yicj.study.order.web.request.Page${entity}Request;
-import com.yicj.study.order.web.request.Save${entity}Request;
-import com.yicj.study.order.web.response.List${entity}Response;
+import com.yicj.study.${module}.web.request.Page${entity}Request;
+import com.yicj.study.${module}.web.request.Save${entity}Request;
+import com.yicj.study.${module}.web.response.List${entity}Response;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 

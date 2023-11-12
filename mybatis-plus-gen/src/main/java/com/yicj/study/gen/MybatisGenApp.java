@@ -13,15 +13,14 @@ import java.util.Collections;
  */
 public class MybatisGenApp {
 
-    private static final String rootPath = "D:\\code\\study\\mybatis-study3\\" ;
+    private static final String rootPath = "D:\\code\\study\\mybatis-study3\\order-service" ;
 
     public static void main(String[] args) {
-        String projectName = "order-service" ;
         String moduleName = "order" ;
-        doGenCode(projectName, moduleName);
+        doGenCode(moduleName);
     }
 
-    private static void doGenCode(String projectName, String moduleName) {
+    private static void doGenCode(String moduleName) {
         String url = "jdbc:mysql://127.0.0.1:3306/test" ;
         String username = "root" ;
         String password = "root" ;
@@ -30,7 +29,7 @@ public class MybatisGenApp {
                     builder.author("yicj") // 设置作者
                             .enableSwagger() // 开启 swagger 模式
                             .fileOverride() // 覆盖已生成文件
-                            .outputDir(rootPath + projectName + "\\src\\main\\java\\"); // 指定输出目录
+                            .outputDir(rootPath + "\\src\\main\\java\\"); // 指定输出目录
                 })
                 .dataSourceConfig(builder -> builder.typeConvertHandler((globalConfig, typeRegistry, metaInfo) -> {
                     int typeCode = metaInfo.getJdbcType().TYPE_CODE;
@@ -49,8 +48,8 @@ public class MybatisGenApp {
                             .moduleName(moduleName) // 设置父包模块名
                             .mapper("repository.mapper")
                             .entity("repository.entity")
-                            .controller("web.controller")
-                            .pathInfo(Collections.singletonMap(OutputFile.xml, rootPath + projectName + "\\src\\main\\resources\\mapper")); // 设置mapperXml生成路径
+                            .controller("web.cont")
+                            .pathInfo(Collections.singletonMap(OutputFile.xml, rootPath + "\\src\\main\\resources\\mapper")); // 设置mapperXml生成路径
                 })
                 .strategyConfig(builder -> {
                     builder.addInclude("t_user") // 设置需要生成的表名

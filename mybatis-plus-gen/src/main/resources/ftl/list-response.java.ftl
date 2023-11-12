@@ -1,4 +1,4 @@
-package com.yicj.study.order.web.response;
+package com.yicj.study.${module}.web.response;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
