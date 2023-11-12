@@ -7,15 +7,14 @@ import com.yicj.study.common.enums.DeleteFlagEnums;
 import com.yicj.study.common.model.dto.IdentityDTO;
 import com.yicj.study.common.model.vo.PageVO;
 import com.yicj.study.common.utils.CommonUtils;
-import com.yicj.study.order.repository.entity.User;
-import com.yicj.study.order.repository.mapper.UserMapper;
-import com.yicj.study.order.service.IUserService;
+import com.yicj.study.order.repository.entity.${entity};
+import com.yicj.study.order.repository.mapper.${entity}Mapper;
+import com.yicj.study.order.service.I${entity}Service;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.yicj.study.order.web.request.ListUserRequest;
-import com.yicj.study.order.web.request.SaveUserRequest;
-import com.yicj.study.order.web.response.ListUserResponse;
+import com.yicj.study.order.web.request.List${entity}Request;
+import com.yicj.study.order.web.request.Save${entity}Request;
+import com.yicj.study.order.web.response.List${entity}Response;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDateTime;
 
 /**
@@ -27,7 +26,7 @@ import java.time.LocalDateTime;
  * @since 2023-11-12
  */
 @Service
-public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
+public class ${entity}ServiceImpl extends ServiceImpl<${entity}Mapper, ${entity}> implements I${entity}Service {
 
     /**
      * 新增操作
@@ -35,11 +34,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
      * @return 主键id
      */
     @Override
-    public Integer addEntity(SaveUserRequest request, IdentityDTO identity) {
-        User entity = new User() ;
-        entity.setName(request.getName());
-        entity.setJob(request.getJob());
-        entity.setCompany(request.getCompany());
+    public Integer addEntity(Save${entity}Request request, IdentityDTO identity) {
+        ${entity} entity = new ${entity}() ;
+        CommonUtils.copyObject(request, entity) ;
         entity.setCreateTime(LocalDateTime.now());
         entity.setCreateBy(identity.getUserCode());
         entity.setModifyTime(LocalDateTime.now());
@@ -50,8 +47,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 
 
     @Override
-    public Integer updateEntity(SaveUserRequest request, IdentityDTO identity) {
-        User entity = new User() ;
+    public Integer updateEntity(Save${entity}Request request, IdentityDTO identity) {
+        ${entity} entity = new ${entity}() ;
         CommonUtils.copyObject(request, entity) ;
         entity.setModifyTime(LocalDateTime.now());
         entity.setModifyBy(identity.getUserCode());
@@ -65,17 +62,17 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
      * @return 分页数据
      */
     @Override
-    public PageVO<ListUserResponse> list4Page(ListUserRequest request){
-        IPage<User> pageParam = new Page<>() ;
-        LambdaQueryWrapper<User> wrapper = new LambdaQueryWrapper<>();
-        IPage<User> page = this.page(pageParam, wrapper);
+    public PageVO<List${entity}Response> list4Page(List${entity}Request request){
+        IPage<${entity}> pageParam = new Page<>() ;
+        LambdaQueryWrapper<${entity}> wrapper = new LambdaQueryWrapper<>();
+        IPage<${entity}> page = this.page(pageParam, wrapper);
         return CommonUtils.toPageVO(
-                page, item -> CommonUtils.copyObject(item, new ListUserResponse())) ;
+                page, item -> CommonUtils.copyObject(item, new List${entity}Response())) ;
     }
 
     @Override
     public Integer deleteEntity(Integer id, IdentityDTO identity) {
-        User entity = new User() ;
+        ${entity} entity = new ${entity}() ;
         entity.setId(id);
         //
         entity.setDelFlag(DeleteFlagEnums.DELETED.getCode());
