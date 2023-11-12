@@ -11,7 +11,7 @@ import com.yicj.study.order.repository.entity.${entity};
 import com.yicj.study.order.repository.mapper.${entity}Mapper;
 import com.yicj.study.order.service.I${entity}Service;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.yicj.study.order.web.request.List${entity}Request;
+import com.yicj.study.order.web.request.Page${entity}Request;
 import com.yicj.study.order.web.request.Save${entity}Request;
 import com.yicj.study.order.web.response.List${entity}Response;
 import org.springframework.stereotype.Service;
