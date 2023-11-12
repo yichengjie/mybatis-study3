@@ -4,7 +4,7 @@ import com.yicj.study.common.model.dto.IdentityDTO;
 import com.yicj.study.common.model.vo.PageVO;
 import com.yicj.study.common.utils.CommonUtils;
 import com.yicj.study.order.OrderServiceApplication;
-import com.yicj.study.order.web.request.ListUserRequest;
+import com.yicj.study.order.web.request.PageUserRequest;
 import com.yicj.study.order.web.request.SaveUserRequest;
 import com.yicj.study.order.web.response.ListUserResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -51,7 +51,9 @@ class IUserServiceTest {
 
     @Test
     void list4Page() {
-        ListUserRequest request = new ListUserRequest() ;
+        PageUserRequest request = new PageUserRequest() ;
+        request.setCurrentPage(1);
+        request.setPageSize(5);
         PageVO<ListUserResponse> pageVO = userService.list4Page(request);
         CommonUtils.pagePrint(pageVO);
     }

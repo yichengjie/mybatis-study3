@@ -11,7 +11,7 @@ import com.yicj.study.order.repository.entity.User;
 import com.yicj.study.order.repository.mapper.UserMapper;
 import com.yicj.study.order.service.IUserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.yicj.study.order.web.request.ListUserRequest;
+import com.yicj.study.order.web.request.PageUserRequest;
 import com.yicj.study.order.web.request.SaveUserRequest;
 import com.yicj.study.order.web.response.ListUserResponse;
 import org.springframework.stereotype.Service;
@@ -62,8 +62,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
      * @return 分页数据
      */
     @Override
-    public PageVO<ListUserResponse> list4Page(ListUserRequest request){
-        IPage<User> pageParam = new Page<>() ;
+    public PageVO<ListUserResponse> list4Page(PageUserRequest request){
+        IPage<User> pageParam =
+                new Page<>(request.getCurrentPage(), request.getPageSize()) ;
         LambdaQueryWrapper<User> wrapper = new LambdaQueryWrapper<>();
         IPage<User> page = this.page(pageParam, wrapper);
         return CommonUtils.toPageVO(

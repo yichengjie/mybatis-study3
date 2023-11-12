@@ -3,7 +3,7 @@ package com.yicj.study.order.web.controller;
 import com.yicj.study.common.model.vo.PageVO;
 import com.yicj.study.common.model.vo.ResponseVO;
 import com.yicj.study.order.service.IUserService;
-import com.yicj.study.order.web.request.ListUserRequest;
+import com.yicj.study.order.web.request.PageUserRequest;
 import com.yicj.study.order.web.response.ListUserResponse;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,7 +30,7 @@ public class UserController {
     }
 
     @PostMapping("list4Page")
-    public ResponseVO<PageVO<ListUserResponse>> list4Page(@RequestBody ListUserRequest request){
+    public ResponseVO<PageVO<ListUserResponse>> list4Page(@RequestBody PageUserRequest request){
         PageVO<ListUserResponse> pageVO = userService.list4Page(request);
         return ResponseVO.success(pageVO) ;
     }

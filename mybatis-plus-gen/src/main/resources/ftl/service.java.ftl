@@ -22,7 +22,7 @@ public interface I${entity}Service extends IService<${entity}> {
 
     Integer updateEntity(Save${entity}Request request, IdentityDTO identity);
 
-    PageVO<List${entity}Response> list4Page(List${entity}Request request);
+    PageVO<List${entity}Response> list4Page(Page${entity}Request request);
 
     Integer deleteEntity(Integer id, IdentityDTO identity);
 }

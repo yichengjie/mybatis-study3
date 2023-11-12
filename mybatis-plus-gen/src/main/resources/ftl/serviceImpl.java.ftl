@@ -62,8 +62,9 @@ public class ${entity}ServiceImpl extends ServiceImpl<${entity}Mapper, ${entity}
      * @return 分页数据
      */
     @Override
-    public PageVO<List${entity}Response> list4Page(List${entity}Request request){
-        IPage<${entity}> pageParam = new Page<>() ;
+    public PageVO<List${entity}Response> list4Page(Page${entity}Request request){
+        IPage<${entity}> pageParam =
+                new Page<>(request.getCurrentPage(), request.getPageSize()) ;
         LambdaQueryWrapper<${entity}> wrapper = new LambdaQueryWrapper<>();
         IPage<${entity}> page = this.page(pageParam, wrapper);
         return CommonUtils.toPageVO(
