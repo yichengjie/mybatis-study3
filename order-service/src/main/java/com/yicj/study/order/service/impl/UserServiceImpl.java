@@ -52,7 +52,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         CommonUtils.copyObject(request, entity) ;
         entity.setModifyTime(LocalDateTime.now());
         entity.setModifyBy(identity.getUserCode());
-        // todo 这里更新是只更新有值部分？
+        // 验证发现mybatis只更新有值的字段，对于空字段不会更新
         return this.baseMapper.updateById(entity) ;
     }
 

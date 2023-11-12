@@ -43,9 +43,9 @@ class IUserServiceTest {
     @Test
     void updateEntity() {
         SaveUserRequest request = new SaveUserRequest() ;
-        request.setName("yicj");
-        request.setCompany("company test1");
-        request.setJob("job test1");
+        request.setName("yicj2");
+        //request.setCompany("company test1");
+        //request.setJob("job test1");
         userService.updateEntity(request, identity) ;
     }
 
