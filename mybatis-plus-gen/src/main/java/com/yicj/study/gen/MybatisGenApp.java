@@ -13,14 +13,15 @@ import java.util.Collections;
  */
 public class MybatisGenApp {
 
-    private static final String rootPath = "D:\\code\\study\\mybatis-study3\\order-service" ;
+    private static final String rootPath = "D:\\code\\study\\mybatis-study3\\user-provider" ;
 
     public static void main(String[] args) {
-        String moduleName = "order" ;
-        doGenCode(moduleName);
+        String basePackage = "com.yicj.study" ;
+        String moduleName = "user" ;
+        doGenCode(basePackage, moduleName);
     }
 
-    private static void doGenCode(String moduleName) {
+    private static void doGenCode(String basePackage, String moduleName) {
         String url = "jdbc:mysql://127.0.0.1:3306/test" ;
         String username = "root" ;
         String password = "root" ;
@@ -44,11 +45,11 @@ public class MybatisGenApp {
                     return typeRegistry.getColumnType(metaInfo);
                 }))
                 .packageConfig(builder -> {
-                    builder.parent("com.yicj.study") // 设置父包名
+                    builder.parent(basePackage) // 设置父包名
                             .moduleName(moduleName) // 设置父包模块名
                             .mapper("repository.mapper")
                             .entity("repository.entity")
-                            .controller("web.cont")
+                            .controller("web.controller")
                             .pathInfo(Collections.singletonMap(OutputFile.xml, rootPath + "\\src\\main\\resources\\mapper")); // 设置mapperXml生成路径
                 })
                 .strategyConfig(builder -> {

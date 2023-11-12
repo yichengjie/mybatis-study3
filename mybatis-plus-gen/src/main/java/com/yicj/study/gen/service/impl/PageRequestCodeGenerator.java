@@ -1,24 +1,29 @@
 package com.yicj.study.gen.service.impl;
 
+import com.yicj.study.gen.service.AbstractCodeGenerator;
 import com.yicj.study.gen.service.CodeGenerator;
 import com.yicj.study.gen.utils.FreemarkerUtil;
 
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @author yicj
  * @date 2023/11/12 20:26
  */
-public class PageRequestCodeGenerator implements CodeGenerator {
+public class PageRequestCodeGenerator extends AbstractCodeGenerator implements CodeGenerator {
+    public PageRequestCodeGenerator(String rootPath, String basePackage, String moduleName) {
+        super(rootPath, basePackage, moduleName);
+    }
+
     @Override
-    public void execute(String rootPath, String moduleName, String entityName) throws Exception {
+    protected void loadFtlConfig() throws Exception {
         FreemarkerUtil.initConfig("page-request.java.ftl");
-        Map<String, Object> param = new HashMap<>() ;
-        param.put("entity", entityName) ;
-        param.put("module", moduleName) ;
-        //
-        String fileName = rootPath + "\\src\\main\\java\\com\\yicj\\study\\"+moduleName+"\\web\\request\\Page"+entityName+"Request.java" ;
-        FreemarkerUtil.generator(fileName, param);
+    }
+
+    @Override
+    protected String assembleFileName(String entityName) {
+        String moduleName = this.getModuleName() ;
+        String rootPath = this.getRootPath() ;
+        String basePackagePath = this.getBasePackagePath() ;
+        return rootPath + "\\src\\main\\java\\" + basePackagePath +"\\"+ moduleName+"\\web\\request\\Page"+entityName+"Request.java" ;
     }
 }

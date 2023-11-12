@@ -6,5 +6,5 @@ package com.yicj.study.gen.service;
  */
 public interface CodeGenerator {
 
-    void execute(String rootPath, String moduleName, String entityName) throws Exception;
+    void execute(String entityName) throws Exception;
 }

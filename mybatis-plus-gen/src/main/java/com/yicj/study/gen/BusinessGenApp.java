@@ -1,30 +1,30 @@
 package com.yicj.study.gen;
 
 import com.yicj.study.gen.service.CodeGenerator;
-import com.yicj.study.gen.service.impl.ListResponseCodeGenerator;
-import com.yicj.study.gen.service.impl.PageRequestCodeGenerator;
-import com.yicj.study.gen.service.impl.ServiceCodeGenerator;
-import com.yicj.study.gen.service.impl.ServiceImplCodeGenerator;
+import com.yicj.study.gen.service.impl.*;
 
 /**
  * @author yicj
  * @date 2023/11/12 20:28
  */
 public class BusinessGenApp {
-    private static final String rootPath = "D:\\code\\study\\mybatis-study3\\order-service" ;
+    private static final String rootPath = "D:\\code\\study\\mybatis-study3\\user-provider" ;
 
     public static void main(String[] args) throws Exception {
-        String moduleName = "order" ;
+        String basePackage = "com.yicj.study" ;
+        String moduleName = "user" ;
         String entityName = "User" ;
         // 初始化
-        CodeGenerator listResponseCodeGenerator = new ListResponseCodeGenerator() ;
-        CodeGenerator pageRequestCodeGenerator = new PageRequestCodeGenerator() ;
-        CodeGenerator serviceCodeGenerator = new ServiceCodeGenerator() ;
-        CodeGenerator serviceImplCodeGenerator = new ServiceImplCodeGenerator();
+        CodeGenerator responseGen = new ListResponseCodeGenerator(rootPath, basePackage, moduleName) ;
+        CodeGenerator pageReqGen = new PageRequestCodeGenerator(rootPath, basePackage, moduleName) ;
+        CodeGenerator serviceGen = new ServiceCodeGenerator(rootPath, basePackage, moduleName) ;
+        CodeGenerator serviceImplGen = new ServiceImplCodeGenerator(rootPath, basePackage, moduleName);
+        CodeGenerator saveGen = new SaveRequestCodeGenerator(rootPath, basePackage, moduleName);
         // 执行
-        listResponseCodeGenerator.execute(rootPath, moduleName, entityName);
-        pageRequestCodeGenerator.execute(rootPath, moduleName, entityName);
-        serviceCodeGenerator.execute(rootPath, moduleName, entityName);
-        serviceImplCodeGenerator.execute(rootPath, moduleName, entityName);
+        responseGen.execute(entityName);
+        pageReqGen.execute(entityName);
+        serviceGen.execute(entityName);
+        serviceImplGen.execute(entityName);
+        saveGen.execute(entityName);
     }
 }
