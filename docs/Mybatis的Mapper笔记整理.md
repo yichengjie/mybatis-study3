@@ -7,3 +7,8 @@
 1. SqlSessionUtils#getSqlSession获取DefaultSqlSession对象
 2. DefaultSqlSession#update(statement, parameter)
 3. Executor.update(MappedStatement ms, Object parameter)
+#### 其他
+1. DynamicSqlSource#getBoundSql(parameterObject)
+2. MixedSqlNode#apply
+3. SetSqlNode#apply -> TrimSqlNode.apply
+4. FilteredDynamicContext#applyAll
