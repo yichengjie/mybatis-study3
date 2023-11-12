@@ -38,6 +38,10 @@ public class MybatisGenApp {
                         // 自定义类型转换
                         return DbColumnType.INTEGER;
                     }
+                    if (typeCode == Types.TINYINT){
+                        // 自定义类型转换
+                        return DbColumnType.INTEGER;
+                    }
                     return typeRegistry.getColumnType(metaInfo);
                 }))
                 .packageConfig(builder -> {
@@ -50,10 +54,10 @@ public class MybatisGenApp {
                 .strategyConfig(builder -> {
                     builder.addInclude("t_user") // 设置需要生成的表名
                             .addTablePrefix("t_", "c_")
-                            .entityBuilder().enableFileOverride()
-                            .mapperBuilder().enableFileOverride()
-                            .serviceBuilder().enableFileOverride()
-                            .controllerBuilder().enableFileOverride()
+                            .entityBuilder()
+                            .mapperBuilder()
+                            .serviceBuilder()
+                            .controllerBuilder()
                     ; // 设置过滤表前缀
 
                 })

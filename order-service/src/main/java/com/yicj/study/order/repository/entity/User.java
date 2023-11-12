@@ -47,7 +47,7 @@ public class User implements Serializable {
     private String modifyBy;
 
     @ApiModelProperty("删除字段 1：删除，0：未删除")
-    private Byte delFlag;
+    private Integer delFlag;
 
     public Integer getId() {
         return id;
@@ -113,11 +113,11 @@ public class User implements Serializable {
         this.modifyBy = modifyBy;
     }
 
-    public Byte getDelFlag() {
+    public Integer getDelFlag() {
         return delFlag;
     }
 
-    public void setDelFlag(Byte delFlag) {
+    public void setDelFlag(Integer delFlag) {
         this.delFlag = delFlag;
     }
 
