@@ -11,6 +11,7 @@
         <module>order-service</module>
         <module>hello-common</module>
         <module>user-provider</module>
+        <module>hello-read-write</module>
     </modules>
 
     <groupId>com.yicj.study</groupId>
