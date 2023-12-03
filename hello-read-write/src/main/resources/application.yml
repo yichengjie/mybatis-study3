@@ -1,0 +1,25 @@
+server:
+  port: 8086
+spring:
+  application:
+    name: order-service-app
+  jackson:
+    time-zone: GMT+8
+  datasource:
+    master:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: jdbc:mysql://127.0.0.1:3306/test
+      username: root
+      password: root
+    slave:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: jdbc:mysql://127.0.0.1:3306/test
+      username: root
+      password: root
+
+logging:
+  level:
+    root: info
+    com.yicj.study.rw.repository.mapper: debug
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*Mapper.xml
