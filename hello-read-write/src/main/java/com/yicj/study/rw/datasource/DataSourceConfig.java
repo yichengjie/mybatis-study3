@@ -41,5 +41,4 @@ public class DataSourceConfig {
         readWriteDataSource.setTargetDataSources(targetDataSources);
         return readWriteDataSource;
     }
-
 }
